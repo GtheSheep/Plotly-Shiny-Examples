@@ -10,3 +10,10 @@ plotStackedBarChart <- function(databag, x, y, group){
   plot_ly(databag, x = databag[,x], y = databag[,y], group = databag[,group], type = "bar") %>%
   layout(barmode = "stack")
 }
+
+usaOpts <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('blue')
+)

@@ -22,4 +22,20 @@ shinyServer(function(input, output) {
   output$gradeChart <- renderPlotly({plotStackedBarChart(gradeVals(), "grade", "loan_amnt", "sub_grade")})
   
   #### ==== Tab 2 (Surfaces) ==== ####
+  # Seems like the easiest way to do a surface is with a matrix, rather than defining x, y, z manually
+  surfaceVals <- reactive({
+    dplyr::select(as.data.frame(loans), delinq_2yrs, int_rate, loan_amnt) %>%
+      dcast(int_rate ~ delinq_2yrs, fun.aggregate = sum, value.var = "loan_amnt") %>%
+      as.matrix()
+  })
+  output$surfaceChart <- renderPlotly({
+    plot_ly(z = surfaceVals(), type = "surface", contours = list(y = list(show = TRUE)), lighting = list(ambient = 1, diffuse = 1, roughness = 1))
+  })
+  
+  #### ==== Tab 3 (Maps) ==== ####
+  stateVals <- reactive({balSummary(loans, "addr_state")})
+  output$stateMapChart <- renderPlotly({
+    plot_ly(stateVals(), z = bal, locations = addr_state, type = 'choropleth', locationmode = 'USA-states', color = bal, colors = "Purples") %>% 
+      layout(title = 'Loan Amounts by State', geo = usaOpts) 
+  })
 })
