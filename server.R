@@ -38,4 +38,12 @@ shinyServer(function(input, output) {
     plot_ly(stateVals(), z = bal, locations = addr_state, type = 'choropleth', locationmode = 'USA-states', color = bal, colors = "Purples") %>% 
       layout(title = 'Loan Amounts by State', geo = usaOpts) 
   })
+  
+  #### ==== Tab 4 (Data Points) ==== ####
+  correlation <- matrix(c(1, .75, .75,.75, 1, .75,.75, .75, 1), ncol = 3)
+  obs <- mvtnorm::rmvnorm(200, sigma = correlation) # use the mvtnorm package to sample 200 observations
+  df <- setNames(data.frame(obs), c("x", "y", "z")) # collect everything in a data-frame
+  
+  output$copulaChart <- renderPlotly({plot_ly(df, x = x, y = y, z = z, type = "scatter3d", mode = "markers", color = x)})
+  
 })

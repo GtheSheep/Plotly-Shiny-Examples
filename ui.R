@@ -35,10 +35,21 @@ mapUI <- tabItem(tabName = "maps", fluidPage(
   )
 ))
 
+pointUI <- tabItem(tabName = "points", fluidPage(
+  fluidRow(
+    column(4, box(
+      title = "Copula Note", width = NULL, background = "lime",
+      "Irrelevant to the actual data, but I like copulae so...."
+    )),
+    column(8, plotlyOutput("copulaChart"))
+  )
+))
+
 sidebar <- sidebarMenu(
     menuItem("Bar Charts", tabName = "bars", icon = icon("stats", lib = "glyphicon")),
     menuItem("Surface Charts", tabName = "surfaces", icon = icon("cubes")),
-    menuItem("Maps", tabName = "maps", icon = icon("globe", lib = "glyphicon"))
+    menuItem("Maps", tabName = "maps", icon = icon("globe", lib = "glyphicon")),
+    menuItem("Data Points", tabName = "points", icon = icon("record", lib = "glyphicon"))
 )
 
 shinyUI(dashboardPage(skin = "red",
@@ -49,7 +60,8 @@ shinyUI(dashboardPage(skin = "red",
     tabItems(
       barUI,
       surfaceUI,
-      mapUI
+      mapUI,
+      pointUI
     )
   )
   )

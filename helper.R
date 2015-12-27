@@ -17,3 +17,24 @@ usaOpts <- list(
   showlakes = TRUE,
   lakecolor = toRGB('blue')
 )
+
+#### ===== Specialty Functions ==== ####
+# Source: http://www.r-bloggers.com/geocode-and-reverse-geocode-your-data-using-r-json-and-google-maps-geocoding-api/
+getGeoCode <- function(gcStr)  {
+  library("RJSONIO") #Load Library
+  gcStr <- gsub(' ','%20',gcStr) #Encode URL Parameters
+  #Open Connection
+  connectStr <- paste('http://maps.google.com/maps/api/geocode/json?sensor=false&address=',gcStr, sep="") 
+  con <- url(connectStr)
+  data.json <- fromJSON(paste(readLines(con), collapse=""))
+  close(con)
+  #Flatten the received JSON
+  data.json <- unlist(data.json)
+  if(data.json["status"]=="OK")   {
+    lat <- data.json["results.geometry.location.lat"]
+    lng <- data.json["results.geometry.location.lng"]
+    gcodes <- c(lat, lng)
+    names(gcodes) <- c("Lat", "Lng")
+    return (gcodes)
+  }
+}
