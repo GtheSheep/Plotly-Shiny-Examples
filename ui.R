@@ -46,11 +46,16 @@ pointUI <- tabItem(tabName = "points", fluidPage(
   )
 ))
 
+statsUI <- tabItem(tabName = "stats", fluidPage(
+  fluidRow(plotlyOutput("statsBoxChart"))
+))
+
 sidebar <- sidebarMenu(
     menuItem("Bar Charts", tabName = "bars", icon = icon("stats", lib = "glyphicon")),
     menuItem("Surface Charts", tabName = "surfaces", icon = icon("cubes")),
     menuItem("Maps", tabName = "maps", icon = icon("globe", lib = "glyphicon")),
-    menuItem("Data Points", tabName = "points", icon = icon("record", lib = "glyphicon"))
+    menuItem("Data Points", tabName = "points", icon = icon("record", lib = "glyphicon")),
+    menuItem("Stats Charts", tabName = "stats", icon = icon("percent"))
 )
 
 shinyUI(dashboardPage(skin = "red",

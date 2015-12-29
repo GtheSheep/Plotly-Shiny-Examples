@@ -46,4 +46,6 @@ shinyServer(function(input, output) {
   
   output$copulaChart <- renderPlotly({plot_ly(df, x = x, y = y, z = z, type = "scatter3d", mode = "markers", color = x)})
   
+  #### ==== Tab 5 (Stats) ==== ####
+  output$statsBoxChart <- renderPlotly({plot_ly(loans, y = loan_amnt, color = purpose, type = "box")})
 })
