@@ -55,7 +55,7 @@ sidebar <- sidebarMenu(
     menuItem("Surface Charts", tabName = "surfaces", icon = icon("cubes")),
     menuItem("Maps", tabName = "maps", icon = icon("globe", lib = "glyphicon")),
     menuItem("Data Points", tabName = "points", icon = icon("record", lib = "glyphicon")),
-    menuItem("Stats Charts", tabName = "stats", icon = icon("percent"))
+    menuItem("Stats Charts", tabName = "stats", icon = icon("space-shuttle"))
 )
 
 shinyUI(dashboardPage(skin = "red",
@@ -67,7 +67,8 @@ shinyUI(dashboardPage(skin = "red",
       barUI,
       surfaceUI,
       mapUI,
-      pointUI
+      pointUI,
+      statsUI
     )
   )
   )
