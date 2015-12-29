@@ -242,6 +242,16 @@ Version: 5.0.1
 Hash: ac6fdda2d118039c426350b2595e7f44
 Requires: Rcpp, brew, digest, stringi, stringr
 
+Package: rsconnect
+Source: github
+Version: 0.4.1.11
+Hash: c06c552fbe7cb2ac83c4a44a18769bc4
+Requires: PKI, RCurl, RJSONIO, digest, packrat, rstudioapi, yaml
+GithubRepo: rsconnect
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: 3034ab8a812858c2ac649171bcadafd149b83bb7
+
 Package: rstudioapi
 Source: CRAN
 Version: 0.4.0
