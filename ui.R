@@ -7,6 +7,7 @@
 
 library(shiny)
 library(shinydashboard)
+library(plotly)
 
 barUI <- tabItem(tabName = "bars", fluidPage(
   fluidRow(
