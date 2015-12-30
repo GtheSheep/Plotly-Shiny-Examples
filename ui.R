@@ -33,6 +33,9 @@ mapUI <- tabItem(tabName = "maps", fluidPage(
       "Will look to add a UK version next, this may require incorporating a postcode to lat/long mapping dictionary"
     )),
     column(8, plotlyOutput("stateMapChart"))
+  ),
+  fluidRow(
+    plotOutput("googleMap")
   )
 ))
 

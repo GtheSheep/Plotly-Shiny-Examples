@@ -7,6 +7,7 @@
 
 library(shiny)
 library(plotly)
+library(ggmap)
 source("helper.R")
 
 shinyServer(function(input, output) {
@@ -37,6 +38,13 @@ shinyServer(function(input, output) {
   output$stateMapChart <- renderPlotly({
     plot_ly(stateVals(), z = bal, locations = addr_state, type = 'choropleth', locationmode = 'USA-states', color = bal, colors = "Purples") %>% 
       layout(title = 'Loan Amounts by State', geo = usaOpts) 
+  })
+  
+  #Currently dummy data, soon to be replaced with CML data once the geocoding is cleaned up
+  moo <- read.csv2("moo_geocoded.csv", sep = ",", header = TRUE, dec = ".")
+  output$googleMap <- renderPlot({
+    map2 <- ggmap::get_googlemap(center = "England", zoom = 6)
+    ggmap(map2) + stat_density2d(data=moo, mapping=aes(x=long, y=lat, fill=..level..), geom="polygon", alpha=0.3)
   })
   
   #### ==== Tab 4 (Data Points) ==== ####
