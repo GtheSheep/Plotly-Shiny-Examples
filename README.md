@@ -6,3 +6,5 @@ App can be launched in browser directly by running the following in RStudio:
 ```{r eval=FALSE}
 shiny::runGitHub("GtheSheep/Plotly-Shiny-Examples", launch.browser = TRUE)
 ```
+CML mortgage data is also openly available on an aggregated basis, this can be sourced from: http://www.cml.org.uk/documents/postcode-lending-data-2015-q1/aggregate-postcode-data-output-2015-q1-website-version.xlsx 
+where I have then stripped out the GB only tab for usage here, and stored in an easy to read format (.csv). 

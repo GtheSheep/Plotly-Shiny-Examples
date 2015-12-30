@@ -19,9 +19,10 @@ usaOpts <- list(
 )
 
 #### ===== Specialty Functions ==== ####
-# Source: http://www.r-bloggers.com/geocode-and-reverse-geocode-your-data-using-r-json-and-google-maps-geocoding-api/
-getGeoCode <- function(gcStr)  {
-  library("RJSONIO") #Load Library
+# Source: http://www.r-bloggers.com/geocode-your-data-using-r-json-and-google-maps-geocoding-apis/
+library("RJSONIO") #Load Library
+getGeoCode <- function(gcStr)
+{
   gcStr <- gsub(' ','%20',gcStr) #Encode URL Parameters
   #Open Connection
   connectStr <- paste('http://maps.google.com/maps/api/geocode/json?sensor=false&address=',gcStr, sep="") 
@@ -30,11 +31,9 @@ getGeoCode <- function(gcStr)  {
   close(con)
   #Flatten the received JSON
   data.json <- unlist(data.json)
-  if(data.json["status"]=="OK")   {
-    lat <- data.json["results.geometry.location.lat"]
-    lng <- data.json["results.geometry.location.lng"]
-    gcodes <- c(lat, lng)
-    names(gcodes) <- c("Lat", "Lng")
-    return (gcodes)
-  }
+  lat <- data.json["results.geometry.location.lat"]
+  lng <- data.json["results.geometry.location.lng"]
+  gcodes <- c(lat, lng)
+  names(gcodes) <- c("Lat", "Lng")
+  return (gcodes)
 }
